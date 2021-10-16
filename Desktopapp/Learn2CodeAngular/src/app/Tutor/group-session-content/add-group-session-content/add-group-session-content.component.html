@@ -1,0 +1,87 @@
+<h5 style="text-align: center">{{ popupTitle }}</h5>
+<hr />
+<form #userform="ngForm">
+<mat-form-field appearance="outline">
+  <mat-label>Category:</mat-label>
+  <!-- <div
+    *ngIf="selectcat.invalid && (selectcat.dirty || selectcat.touched)"
+    class="alert"
+  >
+    <div
+      *ngIf="selectcat.errors?.required"
+      style="font-size: smaller; color: red"
+    >
+      Category is required.
+    </div>
+  </div> -->
+  <mat-select
+    required
+    name="selectcat"
+    #selectcat="ngModel"
+    [(ngModel)]="catxv"
+    (valueChange)="selectType($event)"
+  >
+    <mat-option *ngFor="let type of typeList" [value]="type.id">
+      {{ type.sessionContentCategoryName }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<div>
+  <label for="formFile" class="form-label">Session content file:</label>
+  <!-- <div
+    *ngIf="confile.invalid && (confile.dirty || confile.touched)"
+    class="alert"
+  >
+    <div *ngIf="confile.errors?.required" style="font-size: small; color: red">
+      File is required.
+    </div>
+  </div> -->
+  <input
+    class="form-control"
+    type="file"
+    #file
+    placeholder="Choose file"
+    required
+    name="apppic"
+    #confile="ngModel"
+    [(ngModel)]="filecontent"
+    (change)="SessionFile($event)"
+  />
+</div>
+<div>
+  <label for="formFile" class="form-label">Session content recording:</label>
+  <div *ngIf="reccon.invalid && (reccon.dirty || reccon.touched)" class="alert">
+    <div *ngIf="reccon.errors?.required" style="font-size: small; color: red">
+      Recording is required.
+    </div>
+  </div>
+  <input
+    class="form-control"
+    type="file"
+    #file
+    placeholder="Choose recording"
+    required
+    name="reccon"
+    #reccon="ngModel"
+    [(ngModel)]="reccontent"
+    (change)="SessionVid($event)"
+  />
+</div>
+</form>
+<div style="margin: auto; padding-top: 1rem;margin-left: 2rem;">
+  <button
+  [disabled]="userform.invalid"
+    (click)="onSubmit()"
+    style="width: 6rem"
+    class="btn btn-info"
+  >
+    Submit
+  </button>
+  <button
+    [mat-dialog-close]
+    style="margin-left: 2rem; width: 6rem"
+    class="btn btn-danger"
+  >
+    Cancel
+  </button>
+</div>

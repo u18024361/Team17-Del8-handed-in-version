@@ -1,0 +1,261 @@
+
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">
+    <img
+    src="assets/pics/HD logo.png"
+      width="40"
+      height="40"
+      class="d-inline-block align-top"
+      alt=""
+    />
+  </a>
+  <span class="TDO" style="color: rgb(0, 156, 158); margin-right: auto"
+    >TutorDevOps</span
+  >
+   <!--use this for tutorhome link-->
+  <span class="right" [routerLink]="['/tutorhome']"> 
+    <a style=" color:whitesmoke; margin-right: 3rem;" >Home</a>
+  </span>
+  <!--end-->
+ <!--use this for tutorphoto and dropdown-->
+ <div [matMenuTriggerFor]="menu"   class="dot" class="topnav-right" style="margin-right: 0.5rem">
+  <img
+    src="data:image/gif;base64,{{ tutor.tutorPhoto }}"
+    width="50"
+    height="50"
+    style="border-radius: 55px"
+    class="d-inline-block align-top"
+    alt=""
+    
+  />
+</div>
+
+
+<!--end-->
+</nav>
+ <!--menu-->
+
+ <mat-menu #menu="matMenu" xPosition="before">
+  
+  <button (click)="logout()" mat-menu-item><i class="fa fa-sign-out" aria-hidden="true" style="padding-right: 0.5rem;"></i>Logout</button>
+</mat-menu>
+<!--end-->
+
+
+<div style="padding-top: 2rem; padding-bottom: 1rem">
+  <div class="header">My Schedule</div>
+</div>
+
+<nb-layout >
+  <nb-layout-column >
+    <nb-tabset style="width: 75rem;;
+    overflow-y:hidden;" fullWidth>
+    
+      <nb-tab tabTitle="Calendar" > 
+        <div class="container"  id="myCalendar"  >
+          <full-calendar #calendar deepChangeDetection="true" [options]="calendarOptions"></full-calendar>
+      </div>
+       
+
+      </nb-tab>
+    
+      <nb-tab style=" overflow-x:hidden;
+      overflow-y:hidden;" tabTitle="My Sessions">
+        <div style="padding: 0.4rem; float: left">
+          <button
+            (click)="openAddDialog()" style="margin-right: 3.5rem; float: right"
+            class="btn btn-info"
+          >
+            New Session
+          </button>
+        </div>
+        <br />
+        <br />
+        <h5 style="margin-left: 29rem; text-decoration: underline">
+          Group Sessions
+        </h5>
+
+        <div
+          style="
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+              0 6px 6px rgba(0, 0, 0, 0.23);
+            width: 101%;
+            margin: auto;
+            border-radius: 15px;
+          "
+        >
+          <br />
+
+          <div
+            class="input-group rounded"
+            style="width: 20%; padding-left: 0.5rem; margin-left: 5rem"
+          >
+            <input
+              type="search"
+              class="form-control rounded"
+              placeholder="Search"
+              aria-label="Search"
+              aria-describedby="search-addon"
+            />
+            <span>
+              <button class="btn btn-primary">
+                <i class="fa fa-search"></i>
+              </button>
+            </span>
+          </div>
+
+          <br />
+
+          <table
+            class="table table-hover"
+            style="width: 90%; margin: auto; padding-top: 3.5rem"
+          >
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Module</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Link</th>
+                <th scope="col">Status</th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr  *ngFor="let item of groupSessions | paginate: { itemsPerPage: 5, currentPage: page,totalItems:totalLength, id: 'first' }">
+                <td (click)="viewgroupreg(item.id)">{{item.title}}</td>
+                <td>{{item.module.moduleCode}}</td>
+                <td>{{item.date}} </td>
+                <td>{{item.sessionTime.startTime}} - {{item.sessionTime.endTime}}</td>
+                <td><a href="#">{{item.link}}</a></td>
+                <td>{{item.bookingStatus.bookingStatus}}</td>
+                <th>
+                  <button (click)= "editSession(item)" class="btn btn-info">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                </th>
+                <th>
+                  <button (click)= "deleteSession(item)" class="btn btn-danger">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </th>
+                <th><span  matTooltip="Button will be enabled when the session date has passed"><button  [disabled]="(item.date | date: 'yMMdd') >= (today | date: 'yMMdd')" 
+                    (click)="openFinalize(item)" class="btn btn-primary">Finalize</button></span></th>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <pagination-controls  id="first" style=" padding-left: 0px !important; display:flex;float: right" (pageChange)="page = $event"></pagination-controls>
+       
+        <br>
+       <br>
+        </div>
+        <br />
+        <br />
+        <h5 style="margin-left: 28.5rem; text-decoration: underline">
+          Individual Sessions
+        </h5>
+
+        <div
+          style="
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+              0 6px 6px rgba(0, 0, 0, 0.23);
+            width: 101%;
+            margin: auto;
+            border-radius: 15px;
+          "
+        >
+          <br />
+
+                     
+<!--                 
+                  <mat-form-field style="margin-left: 6rem;" appearance="outline">
+                    
+                     <input matInput [matDatepicker]="picker"  > 
+       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+
+           </mat-form-field>   -->
+           <div
+           class="input-group rounded"
+           style="width: 20%; padding-left: 0.5rem; margin-left: 5rem"
+         >
+           <input
+             type="search"
+             class="form-control rounded"
+             placeholder="Search"
+             aria-label="Search"
+             aria-describedby="search-addon"
+           />
+           <span>
+             <button class="btn btn-primary">
+               <i class="fa fa-search"></i>
+             </button>
+           </span>
+         </div>
+
+          <br />
+
+          <table
+            class="table table-hover"
+            style="width: 80%; margin: auto; padding-top: 3.5rem"
+          >
+            <thead>
+              <tr>
+                <th scope="col">Module</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Link</th>
+                <th scope="col">Status</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr  *ngFor="let item of indivSessions | paginate: { itemsPerPage: 5, currentPage: page1,totalItems:totalLength1,id: 'second' }">
+                <td (click)="viewindreg(item.id)">{{item.module.moduleCode}}</td>
+                <td>{{item.date}}</td>
+                <td>{{item.sessionTime.startTime}} - {{item.sessionTime.endTime}}</td>
+                <td><a href="#">{{item.link}}</a></td>
+                <td>{{item.bookingStatus.bookingStatus}}</td>
+                <th>
+                  <button (click)= "editSession(item)" class="btn btn-info">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                </th>
+                <th>
+                  <button (click)= "deleteSession(item)" class="btn btn-danger">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </th>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <pagination-controls id="second" style=" padding-left: 0px !important; display:flex;float: right" (pageChange)="page1 = $event"></pagination-controls>
+          <br>
+       
+          <br>
+        </div>
+        <br>
+          <br>
+      </nb-tab>
+    </nb-tabset>
+  </nb-layout-column>
+</nb-layout>
+
+
+<footer>
+  <nav id="foot" class="navbar" style="width: 100%; bottom: 0">
+    <a class="navbar-brand" href="#"> </a>
+    <span class="TDO" style="margin-right: auto"> &lt; TDO &gt;</span>
+    <div class="topnav-right">
+      <a href="#"> <i class="fa fa-facebook"></i> </a>
+      <a href="#"> <i class="fa fa-instagram"></i> </a>
+      <a href="#"> <i class="fa fa-twitter"></i> </a>
+      <a>TutorDevOps@gmail.com</a>
+    </div>
+  </nav>
+</footer>
