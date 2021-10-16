@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "TDOionic",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

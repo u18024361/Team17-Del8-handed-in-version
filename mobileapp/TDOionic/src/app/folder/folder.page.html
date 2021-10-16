@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;margin-left: 0.2rem;" >Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+ 
+<div style=" height: 20%; background: linear-gradient(to bottom, #43cebb 63%, white 0%); ">
+  <Br>
+  <div class="circle">{{Letter}}</div>
+</div>
+<h4 style="text-align: center;"> {{student.studentName}}</h4>
+
+
+
+<ion-card>
+
+  <ion-card-content  *ngIf="student.identity">
+     <h1 style="color: black;">Email: <span  style="font-size: large;"> {{student.identity?.email}}</span></h1> 
+  </ion-card-content>
+</ion-card>
+<ion-card>
+
+  <ion-card-content *ngIf="student.studentCell">
+     <h1 style="color: black;">Cell: <span  style="font-size: large;">{{student.studentCell}}</span></h1> 
+  </ion-card-content>
+</ion-card>
+
+<ion-card >
+  <ion-card-content  *ngIf="student.studentModule && student.studentModule[0]">
+     <h1 style="color: black;">University: <span style="font-size: large;">{{student.studentModule[0].module.degree.university.universityName}}</span></h1> 
+  </ion-card-content>
+</ion-card>
+
+<ion-card>
+
+  <ion-card-content  *ngIf="student.studentModule && student.studentModule[0]">
+    <h1 style="color: black;">Degree: <span style="font-size: large;">{{student.studentModule[0].module.degree.degreeName}}</span></h1> 
+  </ion-card-content>
+</ion-card>
+
+<ion-card>
+
+  <ion-card-content *ngIf="student.studentModule && student.studentModule[0]">
+    <h1 style="color: black;">Module: <span style="font-size: large;">{{student.studentModule[0].module.moduleCode}}</span></h1> 
+  </ion-card-content>
+</ion-card>
+
+<div style="margin-left: 5rem;">
+  <ion-button (click)="presentModal()"  style="width: 6rem;" color="tertiary"><ion-icon name="create-outline"></ion-icon>Edit</ion-button>
+  <ion-button (click)="delete(student.id)" style="margin-left: 1rem;width: 6rem;" color="danger"><ion-icon name="trash-outline"></ion-icon>Delete</ion-button>
+</div>
+
+  
+</ion-content>

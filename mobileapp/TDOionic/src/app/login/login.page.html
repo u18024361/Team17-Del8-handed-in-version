@@ -1,0 +1,33 @@
+
+
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+   
+    <ion-buttons slot="end">
+      <ion-button color="secondary"  [routerLink]="['/about']" >About</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+  <div id="header" style="margin-top: 4rem;">
+    <h1 style="font-size: xx-large;font-weight: bold;">Log in</h1>
+    <img src="../../assets/pics/HD logo.png" />
+  </div>
+
+  <form id="form"  #userform="ngForm">
+    <ion-item class="ion-margin-bottom">
+      <ion-input required email type="email" name="emailcontrol" #emailcontrol="ngModel"  
+       [(ngModel)]="Login.Email" name ='emailinput'  placeholder="Email"></ion-input>
+      <span style="color: red;font-size: small;" *ngIf="!emailcontrol.valid && emailcontrol.touched" >Email is required</span>
+      
+    </ion-item>
+  
+    <ion-item  class="ion-margin-bottom">
+      <ion-input required type="password"  [(ngModel)]="Login.Password" name ='passwordinput' #passwordcontrol="ngModel" placeholder="Password"></ion-input>
+      <span style="color: red;font-size: small;" *ngIf="!passwordcontrol.valid && passwordcontrol.touched" >Password is required</span>
+    </ion-item>
+    <ion-button (click)="Loginn()"  [disabled]="userform.invalid"    style="background-color:  #43cebb;" expand="block" shape="round">Login</ion-button>
+    <br>
+    <a style="text-align: center;margin-top: 0.7rem;color: gray;margin-left: 6.2rem;" (click)="presentAlert()">Forgot password</a>
+  </form>
+</ion-content>

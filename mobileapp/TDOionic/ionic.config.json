@@ -1,0 +1,7 @@
+{
+  "name": "TDOionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

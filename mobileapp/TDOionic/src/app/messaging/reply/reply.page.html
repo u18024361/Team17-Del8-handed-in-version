@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Reply</ion-title>
+     <ion-icon (click)="close()" slot="end" style="font-size: 30px;" name="close-outline"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div style="text-align: center;">
+<h1>{{message.tutor?.tutorName}}</h1>
+<h3>"{{message.messageSent}}"</h3>
+</div>
+<br>
+<form id="form"  #userform="ngForm">
+<ion-item style="width: 95%;">
+  <ion-label position="floating">Message</ion-label>
+  <ion-textarea name="messagecontrol" #messagecontrol="ngModel" required [(ngModel)]="replymessage.MessageSent" ></ion-textarea>
+  <span style="color: red;font-size: small;margin-bottom: 1.5rem;" *ngIf="!messagecontrol.valid && messagecontrol.touched" >Message required</span>
+</ion-item>
+<ion-button [disabled]="userform.invalid" (click)="sendMessage()" (click)="reply()" color="primary" expand="full">Reply</ion-button>
+</form>
+</ion-content>
+

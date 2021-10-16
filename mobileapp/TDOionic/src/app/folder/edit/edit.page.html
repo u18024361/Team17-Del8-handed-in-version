@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit profile</ion-title>
+    <ion-icon  slot="end" (click)="close()"  style="font-size: 30px;" name="close-outline"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form id="form"  #userform="ngForm">
+  <ion-item>
+    <ion-label position="floating">First Name:</ion-label>
+    <ion-input required name="namecontrol" #namecontrol="ngModel"  [(ngModel)]="student.studentName"></ion-input>
+  </ion-item>
+  <span style="color: red;font-size: small;margin-left: 1rem;margin-bottom: 1rem;" *ngIf="!namecontrol.valid && namecontrol.touched" >Firstname required</span>
+  <ion-item>
+    <ion-label position="floating">Surname:</ion-label>
+    <ion-input required name="surnamecontrol" #surnamecontrol="ngModel"  [(ngModel)]="student.studentSurname"></ion-input>
+  </ion-item>
+  <span style="color: red;font-size: small;margin-left: 1rem;margin-bottom: 1rem;" *ngIf="!surnamecontrol.valid && surnamecontrol.touched" >Surname required</span>
+  <ion-item>
+    <ion-label position="floating">Username:</ion-label>
+    <ion-input required name="usernamecontrol" #usernamecontrol="ngModel" [(ngModel)]="student.identity.userName"></ion-input>
+  </ion-item>
+  <span style="color: red;font-size: small;margin-left: 1rem;margin-bottom: 1rem;" *ngIf="!usernamecontrol.valid && usernamecontrol.touched" >Username required</span>
+  <ion-item>
+    <ion-label position="floating">Email:</ion-label>
+    <ion-input  required email name="emailcontrol" #emailcontrol="ngModel" [(ngModel)]="student.identity.email"></ion-input>
+  </ion-item>
+  <span style="color: red;font-size: small;margin-left: 1rem;margin-bottom: 1rem;" *ngIf="!emailcontrol.valid && emailcontrol.touched" >Valid email required</span>
+  <ion-item>
+    <ion-label position="floating">Cell Number</ion-label>
+    <ion-input  required  name="cellcontrol" #cellcontrol="ngModel"  [(ngModel)]="student.studentCell"></ion-input>
+  </ion-item>
+  <span style="color: red;font-size: small;margin-left: 1rem;margin-bottom: 1rem;" *ngIf="!cellcontrol.valid && cellcontrol.touched" >Cell number required</span>
+  <ion-item >
+    <ion-label>University</ion-label>
+    <ion-select  required  name="select"  #selectcontrol="ngModel" placeholder="Select" [(ngModel)]="uni"  (ionChange)="selectuni($event.target.value)" okText="Okay" cancelText="Dismiss">
+      <ion-select-option  *ngFor="let uni of uniList"   value="{{uni.id}}" >{{uni.universityName}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <span style="color: red;font-size: small;margin-left: 1rem;" class="help-block" *ngIf="selectcontrol.invalid && selectcontrol.touched ">University is required</span>
+  <ion-item >
+    <ion-label>Degree</ion-label>
+    <ion-select [disabled]="selectcontrol.invalid"  required  name="dselectcontrol"  #dselectcontrol="ngModel"  [(ngModel)]="degree" placeholder="Select" value="brown" okText="Okay" cancelText="Dismiss" (ionChange)="selecdegree($event.target.value)">
+      <ion-select-option  *ngFor="let degree of degreelist"   value="{{degree.id}}" >{{degree.degreeName}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <span style="color: red;font-size: small;margin-left: 1rem;" class="help-block" *ngIf="dselectcontrol?.invalid && dselectcontrol?.touched ">Degree is required</span>
+  <ion-item >
+    <ion-label>Module</ion-label>
+    <ion-select [disabled]="dselectcontrol.invalid || selectcontrol.invalid" required  name="mselectcontrol"  #mselectcontrol="ngModel" [(ngModel)]="student.ModuleId"  placeholder="Select" value="brown" okText="Okay" cancelText="Dismiss">
+      <ion-select-option  *ngFor="let module of Modulelist"   value="{{module.id}}" >{{module.moduleCode}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <span style="color: red;font-size: small;margin-left: 1rem;" class="help-block" *ngIf="mselectcontrol.invalid && mselectcontrol.touched ">Module is required</span>
+
+
+  <br>
+  <ion-button  [disabled]="userform.invalid"  (click)="updatestudent()" expand="block">Update</ion-button>
+</form>
+</ion-content>
+
+<!-- 
+
+
+
+
+
+ -->

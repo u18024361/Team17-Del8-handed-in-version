@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Group Sessions</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1 style="text-align: center;font-weight: bold;">Your Group Schedule</h1>
+
+  <h1  *ngIf="!myGroup || myGroup.length === 0" style="text-align: center;margin-top: 16rem;">You have no upcoming group sessions</h1>
+  <div *ngIf="myGroup">
+   <ion-card *ngFor="let item of myGroup">
+
+    <ion-card-content>
+      <div>
+      <h1 style="color: black;">Module: <span style="font-size: large;">{{item.moduleCode}}</span></h1>
+      <h2>Title: {{item.title}}</h2>
+      <h2>Tutor: {{item.tutorName}}  {{itemtutorSurname}}</h2>
+      <h2>Date:  {{item.date}}</h2>
+      <h2>Time: {{item.startTime}} -  {{item.endTime}} </h2>
+      <h2>Link: <a href="{{item.link}}" style="color: blue;">{{item.link}}</a> </h2>
+
+    </div> 
+    </ion-card-content>
+  </ion-card>
+
+</div>
+</ion-content>

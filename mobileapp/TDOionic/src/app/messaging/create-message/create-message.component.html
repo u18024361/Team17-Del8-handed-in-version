@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Send message</ion-title>
+    <ion-icon  slot="end" (click)="close()"  style="font-size: 30px;" name="close-outline"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+<br>
+<ion-content>
+  <form id="form"  #userform="ngForm">
+  <ion-item >
+    <ion-label>Tutor</ion-label>
+    <ion-select required  name="select"  #selectcontrol="ngModel" [(ngModel)]="tut" (ionChange)="selectTutor($event.target.value)" placeholder="Select"  okText="Okay" cancelText="Dismiss">
+      <ion-select-option *ngFor="let tut of tutors"   value="{{tut.userId}},{{tut.id}}">{{tut.tutorName}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <span style="color: red;font-size: small;margin-left: 17rem;" class="help-block" *ngIf="selectcontrol.invalid && selectcontrol.touched ">Tutor is required</span>
+
+  <br>
+  <ion-item>
+    <ion-textarea required name="messagecontrol" #messagecontrol="ngModel"  [(ngModel)]="message.MessageSent" placeholder="Enter message here..."></ion-textarea>
+    <span style="color: red;font-size: small;margin-top: 1rem;" *ngIf="!messagecontrol.valid && messagecontrol.touched" >Message required</span>
+  </ion-item>
+  <ion-button [disabled]="userform.invalid" (click)="sendMessage()"  expand="block">Send</ion-button>
+</form>
+</ion-content>
+

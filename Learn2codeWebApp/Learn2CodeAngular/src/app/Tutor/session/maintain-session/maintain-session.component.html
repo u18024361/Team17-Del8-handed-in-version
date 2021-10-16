@@ -1,0 +1,149 @@
+<div >
+<h5 style="text-align: center">Update Session</h5>
+<hr />
+<form  #userform="ngForm" style="padding-top: 1.5rem">
+  <div class="row">
+    <div class="col-md-6"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field class="example-full-width">
+        <mat-label>Title:</mat-label>
+        <div
+          *ngIf="Title.invalid && (Title.dirty || Title.touched)"
+          class="alert"
+        >
+          <div
+            *ngIf="Title.errors?.required"
+            style="font-size: smaller; color: red"
+          >
+            Title is required.
+          </div>
+          <div
+            *ngIf="Title.errors?.minlength"
+            style="font-size: smaller; color: red"
+          >
+            Title must be at least 2 characters long.
+          </div>
+        </div>
+        <input
+          matInput
+          required
+          minlength="2"
+          id="Title"
+          #Title="ngModel"
+          [(ngModel)]="data.title"
+          name="Title"
+          matInput
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="example-full-width">
+        <mat-label>Link:</mat-label>
+        <div *ngIf="Link.invalid && (Link.dirty || Link.touched)" class="alert">
+          <div
+            *ngIf="Link.errors?.required"
+            style="font-size: smaller; color: red"
+          >
+            Link is required.
+          </div>
+          <div
+            *ngIf="Link.errors?.minlength"
+            style="font-size: smaller; color: red"
+          >
+            Link must be at least 2 characters long.
+          </div>
+        </div>
+        <input
+          [(ngModel)]="data.link"
+          name="Link"
+          required
+          minlength="2"
+          id="Link"
+          #Link="ngModel"
+          matInput
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+        
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Choose a date</mat-label>
+      
+        <input
+          [(ngModel)]="newDate"
+          name="Date"
+          matInput
+          #date="ngModel"
+          [matDatepicker]="picker"
+          required
+         
+        />
+        <!--  -->
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div *ngIf="date.invalid && (date.dirty || date.touched)" class="alert">
+        <div
+          *ngIf="date.errors?.required"
+          style="font-size: smaller; color: red"
+        >
+          Date is required.
+        </div>
+      </div> 
+    </div>
+    <div class="col-md-6">
+    
+      <div style="margin-left: 2rem">
+        <mat-form-field appearance="outline">
+          <mat-label>Time:</mat-label>
+        
+          <mat-select
+            required
+            name="seltime"
+            #seltime="ngModel"
+            [(ngModel)]="timex"
+            (valueChange)="selectTime($event)"
+          >
+            <mat-option *ngFor="let type of timeList" [value]="type.id">
+              {{ type.startTime }} - {{ type.endTime }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div
+        *ngIf="seltime.invalid && (seltime.dirty || seltime.touched)"
+        class="alert"
+      >
+        <div
+          *ngIf="seltime.errors?.required"
+          style="font-size: smaller; color: red"
+        >
+          Time is required.
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</form>
+<!-- date.invalid ||
+  timex.invalid -->
+<div style="margin-left: 25%">
+  <button  [disabled]="userform.invalid
+  
+" (click)="onCreate()" class="btn btn-info" style="width: 8rem;">
+    Create
+  </button>
+  <button
+    [mat-dialog-close]
+    style="margin-left: 1rem; width: 8rem"
+    class="btn btn-danger"
+  >
+    Cancel
+  </button>
+</div>
+</div>

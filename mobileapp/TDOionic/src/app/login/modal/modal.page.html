@@ -1,0 +1,25 @@
+<ion-header  >
+  <ion-toolbar>
+    <ion-title>Reset your password</ion-title>
+  <ion-icon (click)="dismiss()" slot="end" style="font-size: 30px;" name="close-outline"></ion-icon>
+    
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div style="text-align: center;margin-top: 3rem;"></div>
+<br>
+<h2 style="text-align: center;">Please Provide your Email </h2>
+<div style="margin-top: 1rem;text-align: center;"><ion-icon style="font-size: 90px;" name="mail-outline"></ion-icon></div>
+<br>
+<form id="form">
+  <ion-item class="ion-margin-bottom">
+    <ion-input  placeholder="Email"></ion-input>
+    
+  </ion-item>
+  
+  <ion-button (click)="presentAlert()"  style="background-color:  #43cebb;" expand="block" shape="round">Submit</ion-button>
+  
+</form>
+</ion-content>
