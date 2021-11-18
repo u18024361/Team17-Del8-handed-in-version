@@ -9,8 +9,10 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root'
 })
 export class StudentServiceService {
-url:any ="https://learn2codeapi.azurewebsites.net/api/Student/"
-urlLogin:any ="https://learn2codeapi.azurewebsites.net/api/Login/"
+// url:any ="https://learn2codeapi.azurewebsites.net/api/Student/"
+// urlLogin:any ="https://learn2codeapi.azurewebsites.net/api/Login/"
+url:any ="https://localhost:44393/api/Student/"
+urlLogin:any ="https://localhost:44393/api/Login/"
 student: Student = <Student>{};
 messagereply: any = <any>{};
   constructor(private http: HttpClient,private _jwtHelper: JwtHelperService) { }

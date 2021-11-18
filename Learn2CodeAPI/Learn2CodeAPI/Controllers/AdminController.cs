@@ -946,7 +946,7 @@ namespace Learn2CodeAPI.Controllers
                     "We regret to inform you that your application to become a tutor was unsuccessful. " +
                     "Firstly we would like to say thank you for taking the time to apply and showing interest in TutorDevOps." + Environment.NewLine +
                     "When screening through the applicants there are a variety of criteria that need to met and due to our strict standards it is not unusual for an application to be dismissed."
-                    + Environment.NewLine + "If you have any questions please feel free to eamil back" + Environment.NewLine +"Regards TutorDevOps";
+                    + Environment.NewLine + "If you have any questions please feel free to email back" + Environment.NewLine +"Regards TutorDevOps";
                
                 var message = new Emailservice.Message(new string[] { dto.TutorEmail}, subject, content);
                 await _emailsender.SendEmailAsync(message);

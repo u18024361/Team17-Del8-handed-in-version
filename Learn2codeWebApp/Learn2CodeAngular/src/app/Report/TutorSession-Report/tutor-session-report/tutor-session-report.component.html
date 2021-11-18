@@ -50,21 +50,11 @@
             "
           >
             <mat-label style="text-align: center">Tutor</mat-label>
-            <div
-              *ngIf="
-                selecttut.invalid && (selecttut.dirty || selecttut.touched)
-              "
-              class="alert"
-            >
-              <div
-                *ngIf="selecttut.errors?.required"
-                style="font-size: smaller; color: red"
-              >
-                Tutor is required.
-              </div>
-            </div>
+          
+             
+            
             <mat-select
-              required
+              
               name="selecttut"
               #selecttut="ngModel"
               [(ngModel)]="tutorxv"
@@ -79,20 +69,7 @@
 
           <mat-form-field appearance="outline" style="margin-left: 1rem">
             <mat-label>Start</mat-label>
-            <div
-              *ngIf="
-                selectstart.invalid &&
-                (selectstart.dirty || selectstart.touched)
-              "
-              class="alert"
-            >
-              <div
-                *ngIf="selectstart.errors?.required"
-                style="font-size: smaller; color: red"
-              >
-                Start Date is required.
-              </div>
-            </div>
+          
             <input
               required
               name="selectstart"

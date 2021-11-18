@@ -126,7 +126,7 @@ namespace Learn2CodeAPI.Controllers
         [Route("TutorDetails")]
         public async Task<IActionResult> TutorDetails()
         {
-            var Tutors = await db.Tutor.ToListAsync();
+            var Tutors = await db.Tutor.Where(zz=> zz.TutorStatus.TutorStatusDesc == "Accepted").ToListAsync();
             return Ok(Tutors);
         }
         #endregion
